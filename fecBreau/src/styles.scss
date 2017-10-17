@@ -4,7 +4,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
-    background-color: rebeccapurple;
+    text-align: center;
 
     @include media-md {
      background-color: tan;   
