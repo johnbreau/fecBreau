@@ -1,42 +1,53 @@
-<div class="container">
-  <h1>LEGO Set Input Form</h1>
-  <form [formGroup]="setForm" >
-    <div >
-      <label for="setName">Set Name</label>
-      <input type="text"
-             formControlName="setName"
-             id="setName" required>
-    </div>
+  <div class="container">
+    <form [formGroup]="setForm" class="container">
+      <div class="row">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="setName">Set Name</label>
+          <input type="text"
+                class="form-control"
+                formControlName="setName"
+                id="setName" required>
+        </div>
 
-    <div>
-      <label for="setNumber">Set Number</label>
-      <input type="text"
-             formControlName="setNumber"
-             id="setNumber" required>
-    </div>
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="setNumber">Set Number</label>
+          <input type="text"
+                class="form-control"
+                formControlName="setNumber"
+                id="setNumber" required>
+        </div>
+      </div>
 
-    <div>
-      <label for="setPieces">Number of Pieces</label>
-      <input type="text"
-             formControlName="setPieces"
-             id="setPieces">
-    </div>
+      <div class="row">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="setPieces">Number of Pieces</label>
+          <input type="text"
+                class="form-control"
+                formControlName="setPieces"
+                id="setPieces">
+        </div>
 
-    <div>
-      <label for="setYear">Year</label>
-      <input type="text"
-             formControlName="setYear"
-             id="setYear">
-    </div>
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="setYear">Year</label>
+          <input type="text"
+                class="form-control"
+                formControlName="setYear"
+                id="setYear">
+        </div>
+      </div>
 
-    <div>
-      <label for="setTheme">Theme</label>
-      <input type="text"
-             formControlName="setTheme"
-             id="setTheme">
-    </div>
+      <div class="row">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="setTheme">Theme</label>
+          <input type="text"
+                class="form-control"
+                formControlName="setTheme"
+                id="setTheme">
+        </div>
+      </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="button" class="btn btn-primary">Primary</button>
 
-  </form>
-</div>
+    </form>
+  </div>
