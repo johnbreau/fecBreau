@@ -35,20 +35,28 @@ export class FormComponent implements OnInit {
 
     this.db.openDatabase(1, (evt) => {
       const objectStore = evt.currentTarget.result.createObjectStore(
-          'id', { keyPath: 'id', autoIncrement: true },
-          'setName', { keyPath: 'setName', autoIncrement: false },
+          'setName', { keyPath: 'setName', autoIncrement: true },
           'setNnumber', { keyPath: 'setNnumber', autoIncrement: false },
           'setPieces', { keyPath: 'setPieces', autoIncrement: false },
           'setYear', { keyPath: 'setYear', autoIncrement: false },
           'setTheme', { keyPath: 'setTheme', autoIncrement: false }
         );
-      objectStore.createIndex('id', 'id', { unique: true });
       objectStore.createIndex('setName', 'setName', { unique: false });
       objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
       objectStore.createIndex('setPieces', 'setPieces', { unique: false });
       objectStore.createIndex('setYear', 'setYear', { unique: false });
       objectStore.createIndex('setTheme', 'setTheme', { unique: false });
     });
-   console.log('anything?', this.db); 
+   console.log('anything?', this.db);
+  }
+
+  getset() {
+    console.log('function run');
+    // this.db.getByKey('setName', 1).then((set) => {
+    //   console.log(set);
+    // }, (error) => {
+    //     console.log(error);
+    // });
   }
 }
+
