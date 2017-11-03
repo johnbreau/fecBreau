@@ -34,11 +34,27 @@ export class FormComponent implements OnInit {
     const db = new AngularIndexedDB('myDb', 1);
 
     db.openDatabase(1, (evt) => {
+      // const objectStore = evt.currentTarget.result.createObjectStore(
+      //     'people', { keyPath: "id", autoIncrement: true });
+
+      // objectStore.createIndex("name", "name", { unique: false });
+      // objectStore.createIndex("email", "email", { unique: true });
+
       const objectStore = evt.currentTarget.result.createObjectStore(
-          'setDb', { keyPath: 'setName', autoIncrement: true });
+          'setDatabase', { keyPath: 'setName', autoIncrement: true });
 
       objectStore.createIndex('setName', 'setName', { unique: false });
-      objectStore.createIndex('email', 'email', { unique: true });
+      objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
+      objectStore.createIndex('setPieces', 'setPieces', { unique: false });
+      objectStore.createIndex('setYear', 'setYear', { unique: false });
+      objectStore.createIndex('setTheme', 'setTheme', { unique: false });
+
+  });
+
+  db.getByKey('people', 1).then((person) => {
+    console.log(person);
+    }, (error) => {
+        console.log(error);
   });
 
   }
@@ -51,4 +67,5 @@ export class FormComponent implements OnInit {
 //       objectStore.createIndex('setYear', 'setYear', { unique: false });
 //       objectStore.createIndex('setTheme', 'setTheme', { unique: false });
 //     console.log('anything?', objectStore);
+// });
 
