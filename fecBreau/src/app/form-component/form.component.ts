@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {AngularIndexedDB} from 'angular2-indexeddb';
 import { Set } from '../setInterface';
 
 @Component({
@@ -7,7 +8,7 @@ import { Set } from '../setInterface';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit, OnChanges {
+export class FormComponent implements OnInit {
   public setForm: FormGroup;
   public DBOpenRequest: any;
   public db: any;
@@ -30,33 +31,24 @@ export class FormComponent implements OnInit, OnChanges {
       setTheme: '',
       disabled: [false]
     });
-    // Open indexDB Database...
-    this.DBOpenRequest = window.indexedDB.open('setDb', 1);
+    const db = new AngularIndexedDB('myDb', 1);
 
-    this.DBOpenRequest.onerror = function(event) {
-      console.log('Loading...');
-    };
+    db.openDatabase(1, (evt) => {
+      const objectStore = evt.currentTarget.result.createObjectStore(
+          'setDb', { keyPath: 'setName', autoIncrement: true });
 
-    this.DBOpenRequest.onsuccess = function(event) {
-      console.log('Database initialised');
-    };
+      objectStore.createIndex('setName', 'setName', { unique: false });
+      objectStore.createIndex('email', 'email', { unique: true });
+  });
+
   }
-
-  ngOnChanges() {
-    this.db = this.DBOpenRequest.result;
-
-    const objectStore = this.db.createObjectStore('setDatabase', { keyPath: 'setName' });
-          objectStore.createIndex('setName', 'setName', { unique: false });
-          objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
-          objectStore.createIndex('setPieces', 'setPieces', { unique: false });
-          objectStore.createIndex('setYear', 'setYear', { unique: false });
-          objectStore.createIndex('setTheme', 'setTheme', { unique: false });
-       console.log('anything?', objectStore);
-  }
-
-  getSet() {
-    window.alert('getSet!');
-  }
-
 }
+
+// const objectStore = this.db.createObjectStore('setDatabase', { keyPath: 'setName' });
+//       objectStore.createIndex('setName', 'setName', { unique: false });
+//       objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
+//       objectStore.createIndex('setPieces', 'setPieces', { unique: false });
+//       objectStore.createIndex('setYear', 'setYear', { unique: false });
+//       objectStore.createIndex('setTheme', 'setTheme', { unique: false });
+//     console.log('anything?', objectStore);
 
