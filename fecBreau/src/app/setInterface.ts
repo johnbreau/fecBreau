@@ -1,11 +1,7 @@
 export class Set {
-
-      constructor(
-        public setName: string,
-        public setNumber: string,
-        public setPieces?: number,
-        public setYear?: string,
-        public setTheme?: string
-      ) {  }
-
+        public setName = ''
+        public setNumber = ''
+        public setPieces? = 0
+        public setYear? = ''
+        public setTheme? = ''
 }
