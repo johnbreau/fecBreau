@@ -58,3 +58,58 @@ export class FormComponent implements OnInit {
   // });
   }
 }
+
+// this.db.createStore(1, (evt) => {
+//   const objectStore = evt.currentTarget.result.createObjectStore(
+//     'setDatabase', {keyPath: 'setName', unique: true});
+
+
+
+
+
+// constructor(private r: ComponentFactoryResolver,
+//   private rs: RestService,
+//   private d: DataService,
+//   private i: IndexedDBService
+// ) {
+// this.c = r.resolveComponentFactory(ChooseAccountProfileComponent);
+// this.db = new AngularIndexedDB('usersDB', 1);
+
+// this.db.createStore(1, (evt) => {
+// const objectStore = evt.currentTarget.result.createObjectStore('users', {keyPath: 'id', unique: true});
+
+// objectStore.createIndex('remembered', 'remembered');
+
+// }).then(() => {
+// this.getAllUsers();
+// }, (error) => {
+// console.log(error);
+// });
+// }
+
+// // Get all users in the database.
+// getAllUsers() {
+// this.db.getAll('users').then((users) => {
+// let oldcounter = 0;
+// const kleurenArray = ['#1ccc49', '#e10d6d', '#11afe0', '#7dd317', '#d95f16', '#b0990d', '#7510cc'];
+
+// for (let i = 0; i < users.length; i++) {
+// // put the json in an object.
+// const obj = users[i];
+// // Make the component.
+// const cmpRef = this.v.createComponent(this.c);
+// // Fill the component with the correct values.
+// cmpRef.instance.name = obj.username;
+// cmpRef.instance.id = obj.id;
+// do {
+// var counter = Math.floor(Math.random() * 7);
+// }
+// while (oldcounter === counter);
+// oldcounter = counter;
+// cmpRef.instance.image = '../../../assets/images/Avatars/avatar-    bg-col' + counter + '.png';
+// cmpRef.instance.color = kleurenArray[counter];
+// }
+// }, (error) => {
+// console.log(error);
+// });
+// }
