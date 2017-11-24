@@ -31,9 +31,9 @@ export class FormComponent implements OnInit {
       setTheme: '',
       disabled: [false]
     });
-    const db = new AngularIndexedDB('Sets', 1);
+    this.db = new AngularIndexedDB('myDb', 1);
 
-    db.openDatabase(1, (evt) => {
+    this.db.openDatabase(1, (evt) => {
       const objectStore = evt.currentTarget.result.createObjectStore(
           'setDatabase', { keyPath: 'setName', autoIncrement: true });
 
@@ -44,81 +44,31 @@ export class FormComponent implements OnInit {
       objectStore.createIndex('setTheme', 'setTheme', { unique: false });
 
   });
+}
+  // postToDb() {
+  //    const data =  this.setForm.value;
+  //    console.log('data: ', data);
+  // }
 
-  db.getByKey('setDatabase', 1).then((person) => {
-    console.log(person);
-    }, (error) => {
-        console.log(error);
+  postToDb() {
+    console.log('posting');
+    this.db.add('setDatabase', { setName: this.setForm.get('setName').value,
+                           setNumber : this.setForm.get('setNumber').value,
+                           setPieces : this.setForm.get('setPieces').value,
+                           setYear : this.setForm.get('setYear').value,
+                           setTheme : this.setForm.get('setTheme').value,
+                          })
+                           .then(() => {
+      console.log('added to db');
+  }, (error) => {
+      console.log(error);
   });
-
-  // db.getAll('setDatabase').then((people) => {
-  //   console.log(people);
-  // }, (error) => {
-  //     console.log(error);
-  // });
-  }
+}
 }
 
 
-
-
-
-
-
-
-
-
-// this.db.createStore(1, (evt) => {
-//   const objectStore = evt.currentTarget.result.createObjectStore(
-//     'setDatabase', {keyPath: 'setName', unique: true});
-
-
-
-
-
-// constructor(private r: ComponentFactoryResolver,
-//   private rs: RestService,
-//   private d: DataService,
-//   private i: IndexedDBService
-// ) {
-// this.c = r.resolveComponentFactory(ChooseAccountProfileComponent);
-// this.db = new AngularIndexedDB('usersDB', 1);
-
-// this.db.createStore(1, (evt) => {
-// const objectStore = evt.currentTarget.result.createObjectStore('users', {keyPath: 'id', unique: true});
-
-// objectStore.createIndex('remembered', 'remembered');
-
-// }).then(() => {
-// this.getAllUsers();
-// }, (error) => {
-// console.log(error);
-// });
-// }
-
-// // Get all users in the database.
-// getAllUsers() {
-// this.db.getAll('users').then((users) => {
-// let oldcounter = 0;
-// const kleurenArray = ['#1ccc49', '#e10d6d', '#11afe0', '#7dd317', '#d95f16', '#b0990d', '#7510cc'];
-
-// for (let i = 0; i < users.length; i++) {
-// // put the json in an object.
-// const obj = users[i];
-// // Make the component.
-// const cmpRef = this.v.createComponent(this.c);
-// // Fill the component with the correct values.
-// cmpRef.instance.name = obj.username;
-// cmpRef.instance.id = obj.id;
-// do {
-// var counter = Math.floor(Math.random() * 7);
-// }
-// while (oldcounter === counter);
-// oldcounter = counter;
-// cmpRef.instance.image = '../../../assets/images/Avatars/avatar-    bg-col' + counter + '.png';
-// cmpRef.instance.color = kleurenArray[counter];
-// }
-// }, (error) => {
-// console.log(error);
-// });
-// }
+// db.getByKey('people', 1).then((person) => {
+//   console.log(person);
+//   }, (error) => {
+//       console.log(error);
+// })
