@@ -59,6 +59,15 @@ export class FormComponent implements OnInit {
   }
 }
 
+
+
+
+
+
+
+
+
+
 // this.db.createStore(1, (evt) => {
 //   const objectStore = evt.currentTarget.result.createObjectStore(
 //     'setDatabase', {keyPath: 'setName', unique: true});
