@@ -44,12 +44,30 @@ export class FormComponent implements OnInit {
       objectStore.createIndex('setTheme', 'setTheme', { unique: false });
 
   });
-
-  db.getByKey('people', 1).then((person) => {
-    console.log(person);
-    }, (error) => {
-        console.log(error);
-  });
-
-  }
 }
+  postToDb() {
+     const data =  this.setForm.value;
+     console.log('data: ', data);
+  }
+
+  // postToDb() {
+  //   console.log('posting');
+  //   this.db.add('setDatabase', { setName: this.setForm.get('setName').value,
+  //                          setNumber : this.setForm.get('setNumber').value,
+  //                          setPieces : this.setForm.get('setPieces').value,
+  //                          setYear : this.setForm.get('setYear').value,
+  //                          setTheme : this.setForm.get('setTheme').value,
+  //                         })
+  //                          .then(() => {
+  //     console.log('added to db');
+  // }, (error) => {
+  //     console.log(error);
+  // });
+}
+
+
+// db.getByKey('people', 1).then((person) => {
+//   console.log(person);
+//   }, (error) => {
+//       console.log(error);
+// })
