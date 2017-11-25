@@ -1,5 +1,5 @@
   <div class="container upper-form">
-    <div *ngIf="displayFormSuccess" class="successBanner">Set Successfully Submitted<div class="closeButton" click="closeBanner()">X</div></div>
+    <div *ngIf="displayFormSuccess" class="successBanner">Set Successfully Submitted<span class="closeButton" (click)="closeBanner()">X</span></div>
     <form [formGroup]="setForm" class="container" novalidate>
       <div class="row">
         <div class="form-group col-sm-12 col-md-6">
