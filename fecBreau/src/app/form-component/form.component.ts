@@ -45,13 +45,8 @@ export class FormComponent implements OnInit {
 
   });
 }
-  // postToDb() {
-  //    const data =  this.setForm.value;
-  //    console.log('data: ', data);
-  // }
 
   postToDb() {
-    console.log('posting');
     this.db.add('setDatabase', { setName: this.setForm.get('setName').value,
                            setNumber : this.setForm.get('setNumber').value,
                            setPieces : this.setForm.get('setPieces').value,
@@ -60,15 +55,8 @@ export class FormComponent implements OnInit {
                           })
                            .then(() => {
       console.log('added to db');
-  }, (error) => {
+      }, (error) => {
       console.log(error);
-  });
+    });
+  }
 }
-}
-
-
-// db.getByKey('people', 1).then((person) => {
-//   console.log(person);
-//   }, (error) => {
-//       console.log(error);
-// })
