@@ -11,12 +11,14 @@ import { Set } from '../setInterface';
 export class FormComponent implements OnInit {
   public setForm: FormGroup;
   public DBOpenRequest: any;
+  public displayFormSuccess: boolean;
   public db: any;
 
   constructor (private formBuilder: FormBuilder ) {
    }
 
   ngOnInit() {
+    this.displayFormSuccess = false;
     this.setForm = this.formBuilder.group({
       setName: [
         '',
@@ -37,11 +39,11 @@ export class FormComponent implements OnInit {
       const objectStore = evt.currentTarget.result.createObjectStore(
           'setDatabase', { keyPath: 'setName', autoIncrement: true });
 
-      objectStore.createIndex('setName', 'setName', { unique: false });
-      objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
-      objectStore.createIndex('setPieces', 'setPieces', { unique: false });
-      objectStore.createIndex('setYear', 'setYear', { unique: false });
-      objectStore.createIndex('setTheme', 'setTheme', { unique: false });
+      // objectStore.createIndex('setName', 'setName', { unique: false });
+      // objectStore.createIndex('setNnumber', 'setNnumber', { unique: true });
+      // objectStore.createIndex('setPieces', 'setPieces', { unique: false });
+      // objectStore.createIndex('setYear', 'setYear', { unique: false });
+      // objectStore.createIndex('setTheme', 'setTheme', { unique: false });
 
   });
 }
@@ -55,8 +57,18 @@ export class FormComponent implements OnInit {
                           })
                            .then(() => {
       console.log('added to db');
+      this.displayFormSuccess = true;
       }, (error) => {
       console.log(error);
     });
+    this.setForm.reset();
+  }
+
+  closeBanner() {
+    if (this.displayFormSuccess === true) {
+      this.displayFormSuccess = false;
+    } else {
+      this.displayFormSuccess = false;
+    }
   }
 }
