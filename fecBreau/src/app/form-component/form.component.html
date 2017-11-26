@@ -52,6 +52,13 @@
 
     </form>
   </div>
+  <div class="container" *ngFor="let set of sets">
+    <ul>
+      <li>{{ set }}</li>
+    </ul>
+  </div>
+    
+
   <div class="container">
     <p>Set Name: {{ setForm.value | json }}</p>
   </div>

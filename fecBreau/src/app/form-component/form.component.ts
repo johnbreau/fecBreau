@@ -13,6 +13,7 @@ export class FormComponent implements OnInit {
   public DBOpenRequest: any;
   public displayFormSuccess: boolean;
   public db: any;
+  public sets: any;
 
   constructor (private formBuilder: FormBuilder ) {
    }
@@ -62,7 +63,20 @@ export class FormComponent implements OnInit {
       console.log(error);
     });
     this.setForm.reset();
+    this.refreshDb();
   }
+
+  refreshDb() {
+  this.db.openCursor('setDatabase', (evt) => {
+      const cursor = evt.target.result;
+      if (cursor) {
+          console.log(cursor.value);
+          cursor.continue();
+      } else {
+          console.log('Entries all displayed.');
+      }
+  });
+}
 
   closeBanner() {
     if (this.displayFormSuccess === true) {
