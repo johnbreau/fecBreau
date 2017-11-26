@@ -45,8 +45,18 @@ export class FormComponent implements OnInit {
       // objectStore.createIndex('setPieces', 'setPieces', { unique: false });
       // objectStore.createIndex('setYear', 'setYear', { unique: false });
       // objectStore.createIndex('setTheme', 'setTheme', { unique: false });
-
+  })
+  .then( () => {
+    this.db.openCursor('setDatabase', (evt) => {
+    const cursor = evt.target.result;
+    if (cursor) {
+        console.log(cursor.value);
+        cursor.continue();
+    } else {
+        console.log('Entries all displayed.');
+    }
   });
+});
 }
 
   postToDb() {
@@ -63,10 +73,10 @@ export class FormComponent implements OnInit {
       console.log(error);
     });
     this.setForm.reset();
-    this.refreshDb();
+    this.displayEntries();
   }
 
-  refreshDb() {
+  displayEntries() {
   this.db.openCursor('setDatabase', (evt) => {
       const cursor = evt.target.result;
       if (cursor) {
